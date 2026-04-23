@@ -16,7 +16,8 @@ const Login = ({ setAuth }) => {
   const onSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5001/login', formData);
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+      const res = await axios.post(`${apiUrl}/login`, formData);
       localStorage.setItem('token', res.data.token);
       setAuth(true);
     } catch (err) {

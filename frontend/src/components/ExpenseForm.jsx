@@ -21,7 +21,8 @@ const ExpenseForm = ({ refreshExpenses }) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5001/expense', formData, {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+      await axios.post(`${apiUrl}/expense`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
